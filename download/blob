@@ -1,7 +1,7 @@
 /**
  * @name: 下载 Blob 为文件
  * @param {String} filename 文件名
- * @param {String} blob blob格式的文件，适用于下载后台返回的文件流
+ * @param {String} blob blob格式的文件（适用于下载后台返回的文件流，axios配置responseType: 'blob'）
  * @return:
  */
 export const downloadFileBlob = (filename, blob) => {
