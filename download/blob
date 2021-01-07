@@ -1,0 +1,14 @@
+/**
+ * @name: 下载 Blob 为文件
+ * @param {type}
+ * @return:
+ */
+export const downloadFileBlob = (filename, blob) => {
+  const aLink = document.createElement("a");
+  aLink.href = URL.createObjectURL(blob);
+  aLink.style.visibility = "hidden";
+  aLink.download = filename;
+  document.body.appendChild(aLink);
+  aLink.click();
+  aLink.remove();
+};
