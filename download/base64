@@ -1,0 +1,23 @@
+/**
+ * @name: js 下载 base64 为文件
+ * @param {type}
+ * @return:
+ */
+export const downloadFileBase64 = (filename, base64) => {
+  const aLink = document.createElement("a");
+  const blob = base64ToBlob(base64);
+
+  const evt = document.createEvent("HTMLEvents");
+  evt.initEvent("click", true, true);
+
+  aLink.download = filename;
+  aLink.href = URL.createObjectURL(blob);
+
+  aLink.dispatchEvent(
+    new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    })
+  ); // 兼容火狐
+};
