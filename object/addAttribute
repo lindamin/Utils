@@ -1,0 +1,29 @@
+
+/**
+ * 给对象添加属性
+ * @param {Object} obj 源对象
+ * @param {Object} propsMap 属性映射 {key: 'id'}，那么将添加新属性 key, 值为源对象的 id 值
+ */
+export const addPropsFromOrigin = (obj, propsMap) => {
+  function addProps(obj) {
+    for (let [key, originKey] of Object.entries(propsMap)) {
+      obj[key] = obj[originKey];
+    }
+
+    if (obj.children && obj.children.length) {
+      for (let child of obj.children) {
+        addProps(child);
+      }
+    }
+  }
+
+  if (obj instanceof Array) {
+    for (let o of obj) {
+      addProps(o);
+    }
+  } else if (obj instanceof Object) {
+    addProps(obj);
+  }
+
+  return obj;
+};
