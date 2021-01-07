@@ -1,6 +1,7 @@
 /**
  * @name: js 下载 base64 为文件
- * @param {type}
+ * @param {String} filename 文件名
+ * @param {String} base64 base64格式的文件内容
  * @return:
  */
 export const downloadFileBase64 = (filename, base64) => {
@@ -20,4 +21,24 @@ export const downloadFileBase64 = (filename, base64) => {
       view: window
     })
   ); // 兼容火狐
+};
+
+/**
+ * @name: 将 base64 转换为 blob
+ * @param {String} base64 base64格式的文件内容
+ * @return:
+ */
+export const base64ToBlob = base64 => {
+  const parts = base64.split(";base64,");
+  const contentType = parts[0].split(":")[1];
+  const raw = window.atob(parts[1]);
+  const rawLen = raw.length;
+
+  const uInt8Array = new Uint8Array(rawLen);
+
+  for (let i = 0; i < rawLen; i++) {
+    uInt8Array[i] = raw.charCodeAt(i);
+  }
+
+  return new Blob([uInt8Array], { type: contentType });
 };
