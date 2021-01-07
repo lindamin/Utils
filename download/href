@@ -1,0 +1,19 @@
+/**
+ * @name: 下载指定链接位置的文件
+ * @param {String} filename 文件名
+ * @param {String} url 文件地址
+ * @return:
+ */
+export const downloadFileHref = (filename, url) => {
+  // 创建a标签
+  const link = document.createElement("a");
+  // link.setAttribute("target", "_blank");
+  // download属性
+  link.setAttribute("download", filename);
+  // href链接
+  link.setAttribute("href", url);
+  // 自执行点击事件
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
